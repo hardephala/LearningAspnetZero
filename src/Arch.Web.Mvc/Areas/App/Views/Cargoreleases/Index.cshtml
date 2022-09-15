@@ -1,0 +1,249 @@
+﻿@using Arch.Authorization
+@using Arch.Web.Areas.App.Models.Cargoreleases
+@using Arch.Web.Areas.App.Startup
+@model CargoreleasesViewModel
+@{
+ViewBag.CurrentPageName = AppPageNames.Common.Cargoreleases;
+}
+@section Scripts
+{
+<script abp-src="/view-resources/Areas/App/Views/Cargoreleases/Index.js" asp-append-version="true"></script>
+}
+
+<div class="content d-flex flex-column flex-column-fluid">
+
+    <abp-page-subheader title='@L("Cargoreleases")' description='@L("CargoreleasesHeaderInfo")'>
+        <button id="ExportToExcelButton" class="btn btn-outline btn-outline-success btn-active-light-success me-1"><i class="fa fa-file-excel"></i> @L("ExportToExcel")</button>
+
+        @if (IsGranted(AppPermissions.Pages_Cargoreleases_Create))
+        {
+        <button id="CreateNewCargoreleaseButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewCargorelease")</button>
+        }
+    </abp-page-subheader>
+
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">
+            <div class="card-body">
+                <div class="form">
+                    <div class="row align-items-center mb-4">
+                        <div class="col-xl-12">
+
+                            <div class="my-3">
+                                <div class="input-group">
+                                    <input type="text" id="CargoreleasesTableFilter" class="form-control" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                                    <button id="GetCargoreleasesButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4">
+                    <div class="col-md-12">
+
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="priorityFilterId">@L("priority")</label>
+                            <input type="text" class="form-control" name="priorityFilter" id="priorityFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="blnoFilterId">@L("blno")</label>
+                            <input type="text" class="form-control" name="blnoFilter" id="blnoFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="MininvoicevalidityFilterId">@L("invoicevalidityRange")</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker startDate" type="text" placeholder="@L(" MinValue")" id="MininvoicevalidityFilterId">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker endDate" type="text" placeholder="@L(" MaxValue")" id="MaxinvoicevalidityFilterId">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="terminalFilterId">@L("terminal")</label>
+                            <input type="text" class="form-control" name="terminalFilter" id="terminalFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="deliveryordernoFilterId">@L("deliveryorderno")</label>
+                            <input type="text" class="form-control" name="deliveryordernoFilter" id="deliveryordernoFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="customercodeFilterId">@L("customercode")</label>
+                            <input type="text" class="form-control" name="customercodeFilter" id="customercodeFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="agencycodeFilterId">@L("agencycode")</label>
+                            <input type="text" class="form-control" name="agencycodeFilter" id="agencycodeFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="agentcodeFilterId">@L("agentcode")</label>
+                            <input type="text" class="form-control" name="agentcodeFilter" id="agentcodeFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="entrybyrepcodeFilterId">@L("entrybyrepcode")</label>
+                            <input type="text" class="form-control" name="entrybyrepcodeFilter" id="entrybyrepcodeFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="entrymodeFilterId">@L("entrymode")</label>
+                            <input type="text" class="form-control" name="entrymodeFilter" id="entrymodeFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="MinentrydateFilterId">@L("entrydateRange")</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker startDate" type="text" placeholder="@L(" MinValue")" id="MinentrydateFilterId">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker endDate" type="text" placeholder="@L(" MaxValue")" id="MaxentrydateFilterId">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="approvebyFilterId">@L("approveby")</label>
+                            <input type="text" class="form-control" name="approvebyFilter" id="approvebyFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="approvecommentFilterId">@L("approvecomment")</label>
+                            <input type="text" class="form-control" name="approvecommentFilter" id="approvecommentFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="MinapprovedateFilterId">@L("approvedateRange")</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker startDate" type="text" placeholder="@L(" MinValue")" id="MinapprovedateFilterId">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker endDate" type="text" placeholder="@L(" MaxValue")" id="MaxapprovedateFilterId">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="updatedbyFilterId">@L("updatedby")</label>
+                            <input type="text" class="form-control" name="updatedbyFilter" id="updatedbyFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="updatecommentFilterId">@L("updatecomment")</label>
+                            <input type="text" class="form-control" name="updatecommentFilter" id="updatecommentFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="MinupdatedateFilterId">@L("updatedateRange")</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker startDate" type="text" placeholder="@L(" MinValue")" id="MinupdatedateFilterId">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker endDate" type="text" placeholder="@L(" MaxValue")" id="MaxupdatedateFilterId">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="releasebyFilterId">@L("releaseby")</label>
+                            <input type="text" class="form-control" name="releasebyFilter" id="releasebyFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="releasestatusFilterId">@L("releasestatus")</label>
+                            <input type="text" class="form-control" name="releasestatusFilter" id="releasestatusFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="releasecommentFilterId">@L("releasecomment")</label>
+                            <input type="text" class="form-control" name="releasecommentFilter" id="releasecommentFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="MinreleasedateFilterId">@L("releasedateRange")</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker startDate" type="text" placeholder="@L(" MinValue")" id="MinreleasedateFilterId">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker endDate" type="text" placeholder="@L(" MaxValue")" id="MaxreleasedateFilterId">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="statusFilterId">@L("status")</label>
+                            <input type="text" class="form-control" name="statusFilter" id="statusFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="ipaddrFilterId">@L("ipaddr")</label>
+                            <input type="text" class="form-control" name="ipaddrFilter" id="ipaddrFilterId">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row my-4">
+                    <div class="col-xl-12">
+                        <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
+                        <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <table id="CargoreleasesTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                        <thead>
+                            <tr>
+                                <th></th>
+
+                                <th>@L("Actions")</th>
+                                <th>@L("priority")</th>
+                                <th>@L("blno")</th>
+                                <th>@L("invoicevalidity")</th>
+                                <th>@L("terminal")</th>
+                                <th>@L("deliveryorderno")</th>
+                                <th>@L("customercode")</th>
+                                <th>@L("agencycode")</th>
+                                <th>@L("agentcode")</th>
+                                <th>@L("entrybyrepcode")</th>
+                                <th>@L("entrymode")</th>
+                                <th>@L("entrydate")</th>
+                                <th>@L("approveby")</th>
+                                <th>@L("approvecomment")</th>
+                                <th>@L("approvedate")</th>
+                                <th>@L("updatedby")</th>
+                                <th>@L("updatecomment")</th>
+                                <th>@L("updatedate")</th>
+                                <th>@L("releaseby")</th>
+                                <th>@L("releasestatus")</th>
+                                <th>@L("releasecomment")</th>
+                                <th>@L("releasedate")</th>
+                                <th>@L("status")</th>
+                                <th>@L("ipaddr")</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

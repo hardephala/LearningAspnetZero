@@ -1,0 +1,162 @@
+﻿@using Arch.Authorization
+@using Arch.Web.Areas.App.Models.Customers
+@using Arch.Web.Areas.App.Startup
+@model CustomersViewModel
+@{
+    ViewBag.CurrentPageName = AppPageNames.Common.Customers;
+}
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/App/Views/Customers/Index.js" asp-append-version="true"></script>
+}
+
+<div class="content d-flex flex-column flex-column-fluid">
+
+                <abp-page-subheader title='@L("Customers")' description='@L("CustomersHeaderInfo")'>
+                     <button id="ExportToExcelButton" class="btn btn-outline btn-outline-success btn-active-light-success me-1"><i class="fa fa-file-excel"></i> @L("ExportToExcel")</button>
+            
+                     @if (IsGranted(AppPermissions.Pages_Administration_Customers_Create))
+                     {
+                         <button id="CreateNewCustomerButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewCustomer")</button>                
+                     }
+                </abp-page-subheader>
+            
+<div class="@(await GetContainerClass())">   
+    <div class="card card-custom gutter-b">
+        <div class="card-body">
+            <div class="form">
+                <div class="row align-items-center mb-4">
+                    <div class="col-xl-12">                        
+                        
+                        
+                <div class="my-3">
+                    <div class="input-group">
+                        <input type="text" id="CustomersTableFilter" class="form-control" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                        <button id="GetCustomersButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>                        
+                    </div>
+                </div>
+            
+                    </div>
+                </div>
+			</div>
+                <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4">
+                    <div class="col-md-12">
+						
+					</div>
+
+
+							<div class="col-md-3">
+								<div class="my-3">
+									<label class="form-label" for="customerroleFilterId">@L("customerrole")</label>
+									<input type="text" class="form-control" name="customerroleFilter" id="customerroleFilterId">
+								</div>
+                            </div>
+							<div class="col-md-3">
+								<div class="my-3">
+									<label class="form-label" for="customercodeFilterId">@L("customercode")</label>
+									<input type="text" class="form-control" name="customercodeFilter" id="customercodeFilterId">
+								</div>
+                            </div>
+							<div class="col-md-3">
+								<div class="my-3">
+									<label class="form-label" for="customernameFilterId">@L("customername")</label>
+									<input type="text" class="form-control" name="customernameFilter" id="customernameFilterId">
+								</div>
+                            </div>
+							<div class="col-md-3">
+								<div class="my-3">
+									<label class="form-label" for="customergroupcodeFilterId">@L("customergroupcode")</label>
+									<input type="text" class="form-control" name="customergroupcodeFilter" id="customergroupcodeFilterId">
+								</div>
+                            </div>
+							<div class="col-md-3">
+								<div class="my-3">
+									<label class="form-label" for="customergroupnameFilterId">@L("customergroupname")</label>
+									<input type="text" class="form-control" name="customergroupnameFilter" id="customergroupnameFilterId">
+								</div>
+                            </div>
+							<div class="col-md-3">
+								<div class="my-3">
+									<label class="form-label" for="primaryemailFilterId">@L("primaryemail")</label>
+									<input type="text" class="form-control" name="primaryemailFilter" id="primaryemailFilterId">
+								</div>
+                            </div>
+							<div class="col-md-3">
+								<div class="my-3">
+									<label class="form-label" for="altemailFilterId">@L("altemail")</label>
+									<input type="text" class="form-control" name="altemailFilter" id="altemailFilterId">
+								</div>
+                            </div>
+							<div class="col-md-3">
+								<div class="my-3">
+									<label class="form-label" for="phonenumberFilterId">@L("phonenumber")</label>
+									<input type="text" class="form-control" name="phonenumberFilter" id="phonenumberFilterId">
+								</div>
+                            </div>
+							<div class="col-md-3">
+								<div class="my-3">
+									<label class="form-label" for="accounttypeFilterId">@L("accounttype")</label>
+									<input type="text" class="form-control" name="accounttypeFilter" id="accounttypeFilterId">
+								</div>
+                            </div>
+							<div class="col-md-3">
+								<div class="my-3">
+									<label class="form-label" for="linkedcodeFilterId">@L("linkedcode")</label>
+									<input type="text" class="form-control" name="linkedcodeFilter" id="linkedcodeFilterId">
+								</div>
+                            </div>
+							<div class="col-md-3">
+								<div class="my-3">
+									<label class="form-label" for="passwordFilterId">@L("password")</label>
+									<input type="text" class="form-control" name="passwordFilter" id="passwordFilterId">
+								</div>
+                            </div>
+							<div class="col-md-3">
+								<div class="my-3">
+									<label class="form-label" for="statusFilterId">@L("status")</label>
+									<input type="text" class="form-control" name="statusFilter" id="statusFilterId">
+								</div>
+                            </div>
+							<div class="col-md-3">
+								<div class="my-3">
+									<label class="form-label" for="notesFilterId">@L("notes")</label>
+									<input type="text" class="form-control" name="notesFilter" id="notesFilterId">
+								</div>
+                            </div>
+
+
+                </div>
+                <div class="row my-4">
+                    <div class="col-xl-12">
+                        <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
+                        <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
+                    </div>
+                </div>
+            <div class="row align-items-center">
+                <table id="CustomersTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            
+                            <th>@L("Actions")</th>
+								<th>@L("customerrole")</th>
+								<th>@L("customercode")</th>
+								<th>@L("customername")</th>
+								<th>@L("customergroupcode")</th>
+								<th>@L("customergroupname")</th>
+								<th>@L("primaryemail")</th>
+								<th>@L("altemail")</th>
+								<th>@L("phonenumber")</th>
+								<th>@L("accounttype")</th>
+								<th>@L("linkedcode")</th>
+								<th>@L("password")</th>
+								<th>@L("status")</th>
+								<th>@L("notes")</th>                            
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

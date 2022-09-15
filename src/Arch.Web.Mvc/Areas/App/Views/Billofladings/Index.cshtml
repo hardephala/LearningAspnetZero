@@ -1,0 +1,334 @@
+﻿@using Arch.Authorization
+@using Arch.Web.Areas.App.Models.Billofladings
+@using Arch.Web.Areas.App.Startup
+@model BillofladingsViewModel
+@{
+ViewBag.CurrentPageName = AppPageNames.Common.Billofladings;
+}
+@section Scripts
+{
+<script abp-src="/view-resources/Areas/App/Views/Billofladings/Index.js" asp-append-version="true"></script>
+}
+
+<div class="content d-flex flex-column flex-column-fluid">
+
+    <abp-page-subheader title='@L("Billofladings")' description='@L("BillofladingsHeaderInfo")'>
+        <button id="ExportToExcelButton" class="btn btn-outline btn-outline-success btn-active-light-success me-1"><i class="fa fa-file-excel"></i> @L("ExportToExcel")</button>
+
+        @if (IsGranted(AppPermissions.Pages_Billofladings_Create))
+        {
+        <button id="CreateNewBillofladingButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewBilloflading")</button>
+        }
+    </abp-page-subheader>
+
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">
+            <div class="card-body">
+                <div class="form">
+                    <div class="row align-items-center mb-4">
+                        <div class="col-xl-12">
+
+                            <div class="my-3">
+                                <div class="input-group">
+                                    <input type="text" id="BillofladingsTableFilter" class="form-control" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                                    <button id="GetBillofladingsButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4">
+                    <div class="col-md-12">
+
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="shipmentnoFilterId">@L("shipmentno")</label>
+                            <input type="text" class="form-control" name="shipmentnoFilter" id="shipmentnoFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="blnoFilterId">@L("blno")</label>
+                            <input type="text" class="form-control" name="blnoFilter" id="blnoFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="equipmentnoFilterId">@L("equipmentno")</label>
+                            <input type="text" class="form-control" name="equipmentnoFilter" id="equipmentnoFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="equipmenttypeFilterId">@L("equipmenttype")</label>
+                            <input type="text" class="form-control" name="equipmenttypeFilter" id="equipmenttypeFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="equipmentsizeFilterId">@L("equipmentsize")</label>
+                            <input type="text" class="form-control" name="equipmentsizeFilter" id="equipmentsizeFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="shipperownedFilterId">@L("shipperowned")</label>
+                            <input type="text" class="form-control" name="shipperownedFilter" id="shipperownedFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="shipoperatorFilterId">@L("shipoperator")</label>
+                            <input type="text" class="form-control" name="shipoperatorFilter" id="shipoperatorFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="servicecontractFilterId">@L("servicecontract")</label>
+                            <input type="text" class="form-control" name="servicecontractFilter" id="servicecontractFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="spotbookingFilterId">@L("spotbooking")</label>
+                            <input type="text" class="form-control" name="spotbookingFilter" id="spotbookingFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="consigneecodeFilterId">@L("consigneecode")</label>
+                            <input type="text" class="form-control" name="consigneecodeFilter" id="consigneecodeFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="dischargeportcodeFilterId">@L("dischargeportcode")</label>
+                            <input type="text" class="form-control" name="dischargeportcodeFilter" id="dischargeportcodeFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="dischargeportnameFilterId">@L("dischargeportname")</label>
+                            <input type="text" class="form-control" name="dischargeportnameFilter" id="dischargeportnameFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="placeofdeliverycodeFilterId">@L("placeofdeliverycode")</label>
+                            <input type="text" class="form-control" name="placeofdeliverycodeFilter" id="placeofdeliverycodeFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="placeofdeliverynameFilterId">@L("placeofdeliveryname")</label>
+                            <input type="text" class="form-control" name="placeofdeliverynameFilter" id="placeofdeliverynameFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="finalvesselcodeFilterId">@L("finalvesselcode")</label>
+                            <input type="text" class="form-control" name="finalvesselcodeFilter" id="finalvesselcodeFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="finalvesselnameFilterId">@L("finalvesselname")</label>
+                            <input type="text" class="form-control" name="finalvesselnameFilter" id="finalvesselnameFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="finalvesselvoyageFilterId">@L("finalvesselvoyage")</label>
+                            <input type="text" class="form-control" name="finalvesselvoyageFilter" id="finalvesselvoyageFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="MinfinalvesseletaFilterId">@L("finalvesseletaRange")</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker" type="text" placeholder="@L(" MinValue")" id="MinfinalvesseletaFilterId">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker" type="text" placeholder="@L(" MaxValue")" id="MaxfinalvesseletaFilterId">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="partpartstatusFilterId">@L("partpartstatus")</label>
+                            <input type="text" class="form-control" name="partpartstatusFilter" id="partpartstatusFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="partpartrefFilterId">@L("partpartref")</label>
+                            <input type="text" class="form-control" name="partpartrefFilter" id="partpartrefFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="depositpayableFilterId">@L("depositpayable")</label>
+                            <input type="text" class="form-control" name="depositpayableFilter" id="depositpayableFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="MindepositdueamountFilterId">@L("MinMax") @L("depositdueamount")</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control m-input" placeholder="@L(" MinValue")" name="mindepositdueamountFilter" id="MindepositdueamountFilterId" />
+                                <input type="number" class="form-control m-input" placeholder="@L(" MaxValue")" name="maxdepositdueamountFilter" id="MaxdepositdueamountFilterId" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="depositwaivedamountFilterId">@L("depositwaivedamount")</label>
+                            <input type="text" class="form-control" name="depositwaivedamountFilter" id="depositwaivedamountFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="depositwaivedreasonFilterId">@L("depositwaivedreason")</label>
+                            <input type="text" class="form-control" name="depositwaivedreasonFilter" id="depositwaivedreasonFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="depositwaivedbyFilterId">@L("depositwaivedby")</label>
+                            <input type="text" class="form-control" name="depositwaivedbyFilter" id="depositwaivedbyFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="depositpaymentstatusFilterId">@L("depositpaymentstatus")</label>
+                            <input type="text" class="form-control" name="depositpaymentstatusFilter" id="depositpaymentstatusFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="releaseoutstandingstatusFilterId">@L("releaseoutstandingstatus")</label>
+                            <input type="text" class="form-control" name="releaseoutstandingstatusFilter" id="releaseoutstandingstatusFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="releaseoutstandingreasonFilterId">@L("releaseoutstandingreason")</label>
+                            <input type="text" class="form-control" name="releaseoutstandingreasonFilter" id="releaseoutstandingreasonFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="releaseoutstandingbyFilterId">@L("releaseoutstandingby")</label>
+                            <input type="text" class="form-control" name="releaseoutstandingbyFilter" id="releaseoutstandingbyFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="releaselongstandingstatusFilterId">@L("releaselongstandingstatus")</label>
+                            <input type="text" class="form-control" name="releaselongstandingstatusFilter" id="releaselongstandingstatusFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="releaselongstandingreasonFilterId">@L("releaselongstandingreason")</label>
+                            <input type="text" class="form-control" name="releaselongstandingreasonFilter" id="releaselongstandingreasonFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="releaselongstandingbyFilterId">@L("releaselongstandingby")</label>
+                            <input type="text" class="form-control" name="releaselongstandingbyFilter" id="releaselongstandingbyFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="blnotypeFilterId">@L("blnotype")</label>
+                            <input type="text" class="form-control" name="blnotypeFilter" id="blnotypeFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="blnosubmitstatusFilterId">@L("blnosubmitstatus")</label>
+                            <input type="text" class="form-control" name="blnosubmitstatusFilter" id="blnosubmitstatusFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="blnosubmittedtoFilterId">@L("blnosubmittedto")</label>
+                            <input type="text" class="form-control" name="blnosubmittedtoFilter" id="blnosubmittedtoFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="blnosubmittedbyFilterId">@L("blnosubmittedby")</label>
+                            <input type="text" class="form-control" name="blnosubmittedbyFilter" id="blnosubmittedbyFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="blnosubmitrefFilterId">@L("blnosubmitref")</label>
+                            <input type="text" class="form-control" name="blnosubmitrefFilter" id="blnosubmitrefFilterId">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row my-4">
+                    <div class="col-xl-12">
+                        <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
+                        <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <table id="BillofladingsTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                        <thead>
+                            <tr>
+                                <th></th>
+
+                                <th>@L("Actions")</th>
+                                <th>@L("shipmentno")</th>
+                                <th>@L("blno")</th>
+                                <th>@L("equipmentno")</th>
+                                <th>@L("equipmenttype")</th>
+                                <th>@L("equipmentsize")</th>
+                                <th>@L("shipperowned")</th>
+                                <th>@L("shipoperator")</th>
+                                <th>@L("servicecontract")</th>
+                                <th>@L("spotbooking")</th>
+                                <th>@L("consigneecode")</th>
+                                <th>@L("dischargeportcode")</th>
+                                <th>@L("dischargeportname")</th>
+                                <th>@L("placeofdeliverycode")</th>
+                                <th>@L("placeofdeliveryname")</th>
+                                <th>@L("finalvesselcode")</th>
+                                <th>@L("finalvesselname")</th>
+                                <th>@L("finalvesselvoyage")</th>
+                                <th>@L("finalvesseleta")</th>
+                                <th>@L("partpartstatus")</th>
+                                <th>@L("partpartref")</th>
+                                <th>@L("depositpayable")</th>
+                                <th>@L("depositdueamount")</th>
+                                <th>@L("depositwaivedamount")</th>
+                                <th>@L("depositwaivedreason")</th>
+                                <th>@L("depositwaivedby")</th>
+                                <th>@L("depositpaymentstatus")</th>
+                                <th>@L("releaseoutstandingstatus")</th>
+                                <th>@L("releaseoutstandingreason")</th>
+                                <th>@L("releaseoutstandingby")</th>
+                                <th>@L("releaselongstandingstatus")</th>
+                                <th>@L("releaselongstandingreason")</th>
+                                <th>@L("releaselongstandingby")</th>
+                                <th>@L("blnotype")</th>
+                                <th>@L("blnosubmitstatus")</th>
+                                <th>@L("blnosubmittedto")</th>
+                                <th>@L("blnosubmittedby")</th>
+                                <th>@L("blnosubmitref")</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

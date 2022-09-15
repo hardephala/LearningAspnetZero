@@ -1,0 +1,72 @@
+﻿
+@using Arch.Web.Areas.App.Models.Common.Modals
+@using Arch.Web.Areas.App.Models.Customers
+@model CustomerViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="CustomerInformationsTab">
+        
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("customerrole") :</h6>
+                @Model.Customer.customerrole
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("customercode") :</h6>
+                @Model.Customer.customercode
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("customername") :</h6>
+                @Model.Customer.customername
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("customergroupcode") :</h6>
+                @Model.Customer.customergroupcode
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("customergroupname") :</h6>
+                @Model.Customer.customergroupname
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("primaryemail") :</h6>
+                @Model.Customer.primaryemail
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("altemail") :</h6>
+                @Model.Customer.altemail
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("phonenumber") :</h6>
+                @Model.Customer.phonenumber
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("accounttype") :</h6>
+                @Model.Customer.accounttype
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("linkedcode") :</h6>
+                @Model.Customer.linkedcode
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("password") :</h6>
+                @Model.Customer.password
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("status") :</h6>
+                @Model.Customer.status
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("notes") :</h6>
+                @Model.Customer.notes
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")
+

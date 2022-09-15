@@ -1,0 +1,79 @@
+﻿
+@using Arch.Web.Areas.App.Models.Common.Modals
+@using Arch.Web.Areas.App.Models.Invoicedatas
+@model InvoicedataViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="InvoicedataInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("blno") :</h6>
+                @Model.Invoicedata.blno
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("validitydate") :</h6>
+                @Model.Invoicedata.validitydate
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("amount") :</h6>
+                @Model.Invoicedata.amount
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("amountdue") :</h6>
+                @Model.Invoicedata.amountdue
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("status") :</h6>
+                @Model.Invoicedata.status
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("invpaiddate") :</h6>
+                @Model.Invoicedata.invpaiddate
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("userid") :</h6>
+                @Model.Invoicedata.userid
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("waiver") :</h6>
+                @Model.Invoicedata.waiver
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("waivedamount") :</h6>
+                @Model.Invoicedata.waivedamount
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("waivedby") :</h6>
+                @Model.Invoicedata.waivedby
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("waivecomment") :</h6>
+                @Model.Invoicedata.waivecomment
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("datewaived") :</h6>
+                @Model.Invoicedata.datewaived
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("CreationTime") :</h6>
+                @Model.Invoicedata.CreationTime
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("LastModificationTime") :</h6>
+                @Model.Invoicedata.LastModificationTime
+            </div>
+
+            <div class="col-6 mb-3">
+                <h6>(@L("Billoflading")) @L("blno") :</h6>
+                @Model.Billofladingblno
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

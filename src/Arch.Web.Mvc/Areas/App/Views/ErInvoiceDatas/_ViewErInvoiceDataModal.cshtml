@@ -1,0 +1,39 @@
+﻿
+@using Arch.Web.Areas.App.Models.Common.Modals
+@using Arch.Web.Areas.App.Models.ErInvoiceDatas
+@model ErInvoiceDataViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="ErInvoiceDataInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("validityDate") :</h6>
+                @Model.ErInvoiceData.validityDate
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("amount") :</h6>
+                @Model.ErInvoiceData.amount
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("amountdue") :</h6>
+                @Model.ErInvoiceData.amountdue
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("status") :</h6>
+                @Model.ErInvoiceData.status
+            </div>
+
+            <div class="col-6 mb-3">
+                <h6>(@L("Billoflading")) @L("blno") :</h6>
+                @Model.Billofladingblno
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

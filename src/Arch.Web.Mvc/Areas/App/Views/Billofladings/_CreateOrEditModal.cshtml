@@ -1,0 +1,207 @@
+﻿
+@using System.Globalization
+@using Arch.Web.Areas.App.Models.Common.Modals
+@using Arch.Web.Areas.App.Models.Billofladings
+@model CreateOrEditBillofladingModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditBilloflading")) : L("CreateNewBilloflading")))
+
+<div class="modal-body">
+    <div id="BillofladingInformationsTab">
+        <form name="BillofladingInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.Billoflading.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_shipmentno">@L("shipmentno")</label>
+                <input class="form-control" id="Billoflading_shipmentno" value="@Model.Billoflading.shipmentno" type="text" name="shipmentno" maxlength="@Arch.Billofladings.BillofladingConsts.MaxshipmentnoLength" minlength="@Arch.Billofladings.BillofladingConsts.MinshipmentnoLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_blno">@L("blno")</label>
+                <input class="form-control" id="Billoflading_blno" value="@Model.Billoflading.blno" type="text" name="blno" maxlength="@Arch.Billofladings.BillofladingConsts.MaxblnoLength" minlength="@Arch.Billofladings.BillofladingConsts.MinblnoLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_equipmentno">@L("equipmentno")</label>
+                <input class="form-control" id="Billoflading_equipmentno" value="@Model.Billoflading.equipmentno" type="text" name="equipmentno" maxlength="@Arch.Billofladings.BillofladingConsts.MaxequipmentnoLength" minlength="@Arch.Billofladings.BillofladingConsts.MinequipmentnoLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_equipmenttype">@L("equipmenttype")</label>
+                <input class="form-control" id="Billoflading_equipmenttype" value="@Model.Billoflading.equipmenttype" type="text" name="equipmenttype" maxlength="@Arch.Billofladings.BillofladingConsts.MaxequipmenttypeLength" minlength="@Arch.Billofladings.BillofladingConsts.MinequipmenttypeLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_equipmentsize">@L("equipmentsize")</label>
+                <input class="form-control" id="Billoflading_equipmentsize" value="@Model.Billoflading.equipmentsize" type="text" name="equipmentsize" maxlength="@Arch.Billofladings.BillofladingConsts.MaxequipmentsizeLength" minlength="@Arch.Billofladings.BillofladingConsts.MinequipmentsizeLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_shipperowned">@L("shipperowned")</label>
+                <input class="form-control" id="Billoflading_shipperowned" value="@Model.Billoflading.shipperowned" type="text" name="shipperowned" maxlength="@Arch.Billofladings.BillofladingConsts.MaxshipperownedLength" minlength="@Arch.Billofladings.BillofladingConsts.MinshipperownedLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_shipoperator">@L("shipoperator")</label>
+                <input class="form-control" id="Billoflading_shipoperator" value="@Model.Billoflading.shipoperator" type="text" name="shipoperator" maxlength="@Arch.Billofladings.BillofladingConsts.MaxshipoperatorLength" minlength="@Arch.Billofladings.BillofladingConsts.MinshipoperatorLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_servicecontract">@L("servicecontract")</label>
+                <input class="form-control" id="Billoflading_servicecontract" value="@Model.Billoflading.servicecontract" type="text" name="servicecontract" maxlength="@Arch.Billofladings.BillofladingConsts.MaxservicecontractLength" minlength="@Arch.Billofladings.BillofladingConsts.MinservicecontractLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_spotbooking">@L("spotbooking")</label>
+                <input class="form-control" id="Billoflading_spotbooking" value="@Model.Billoflading.spotbooking" type="text" name="spotbooking" maxlength="@Arch.Billofladings.BillofladingConsts.MaxspotbookingLength" minlength="@Arch.Billofladings.BillofladingConsts.MinspotbookingLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_consigneecode">@L("consigneecode")</label>
+                <input class="form-control" id="Billoflading_consigneecode" value="@Model.Billoflading.consigneecode" type="text" name="consigneecode" maxlength="@Arch.Billofladings.BillofladingConsts.MaxconsigneecodeLength" minlength="@Arch.Billofladings.BillofladingConsts.MinconsigneecodeLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_dischargeportcode">@L("dischargeportcode")</label>
+                <input class="form-control" id="Billoflading_dischargeportcode" value="@Model.Billoflading.dischargeportcode" type="text" name="dischargeportcode" maxlength="@Arch.Billofladings.BillofladingConsts.MaxdischargeportcodeLength" minlength="@Arch.Billofladings.BillofladingConsts.MindischargeportcodeLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_dischargeportname">@L("dischargeportname")</label>
+                <input class="form-control" id="Billoflading_dischargeportname" value="@Model.Billoflading.dischargeportname" type="text" name="dischargeportname" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_placeofdeliverycode">@L("placeofdeliverycode")</label>
+                <input class="form-control" id="Billoflading_placeofdeliverycode" value="@Model.Billoflading.placeofdeliverycode" type="text" name="placeofdeliverycode" maxlength="@Arch.Billofladings.BillofladingConsts.MaxplaceofdeliverycodeLength" minlength="@Arch.Billofladings.BillofladingConsts.MinplaceofdeliverycodeLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_placeofdeliveryname">@L("placeofdeliveryname")</label>
+                <input class="form-control" id="Billoflading_placeofdeliveryname" value="@Model.Billoflading.placeofdeliveryname" type="text" name="placeofdeliveryname" maxlength="@Arch.Billofladings.BillofladingConsts.MaxplaceofdeliverynameLength" minlength="@Arch.Billofladings.BillofladingConsts.MinplaceofdeliverynameLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_finalvesselcode">@L("finalvesselcode")</label>
+                <input class="form-control" id="Billoflading_finalvesselcode" value="@Model.Billoflading.finalvesselcode" type="text" name="finalvesselcode" maxlength="@Arch.Billofladings.BillofladingConsts.MaxfinalvesselcodeLength" minlength="@Arch.Billofladings.BillofladingConsts.MinfinalvesselcodeLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_finalvesselname">@L("finalvesselname")</label>
+                <input class="form-control" id="Billoflading_finalvesselname" value="@Model.Billoflading.finalvesselname" type="text" name="finalvesselname" maxlength="@Arch.Billofladings.BillofladingConsts.MaxfinalvesselnameLength" minlength="@Arch.Billofladings.BillofladingConsts.MinfinalvesselnameLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_finalvesselvoyage">@L("finalvesselvoyage")</label>
+                <input class="form-control" id="Billoflading_finalvesselvoyage" value="@Model.Billoflading.finalvesselvoyage" type="text" name="finalvesselvoyage" maxlength="@Arch.Billofladings.BillofladingConsts.MaxfinalvesselvoyageLength" minlength="@Arch.Billofladings.BillofladingConsts.MinfinalvesselvoyageLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_finalvesseleta">@L("finalvesseleta")</label>
+                <input class="form-control m-input date-picker" id="Billoflading_finalvesseleta" type="text" name="finalvesseleta" value="@Model.Billoflading.finalvesseleta" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_partpartstatus">@L("partpartstatus")</label>
+                <input class="form-control" id="Billoflading_partpartstatus" value="@Model.Billoflading.partpartstatus" type="text" name="partpartstatus" maxlength="@Arch.Billofladings.BillofladingConsts.MaxpartpartstatusLength" minlength="@Arch.Billofladings.BillofladingConsts.MinpartpartstatusLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_partpartref">@L("partpartref")</label>
+                <input class="form-control" id="Billoflading_partpartref" value="@Model.Billoflading.partpartref" type="text" name="partpartref" maxlength="@Arch.Billofladings.BillofladingConsts.MaxpartpartrefLength" minlength="@Arch.Billofladings.BillofladingConsts.MinpartpartrefLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_depositpayable">@L("depositpayable")</label>
+                <input class="form-control" id="Billoflading_depositpayable" value="@Model.Billoflading.depositpayable" type="text" name="depositpayable" maxlength="@Arch.Billofladings.BillofladingConsts.MaxdepositpayableLength" minlength="@Arch.Billofladings.BillofladingConsts.MindepositpayableLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_depositdueamount">@L("depositdueamount")</label>
+                <input class="form-control m-input" id="Billoflading_depositdueamount" value="@Model.Billoflading.depositdueamount.ToString(CultureInfo.InvariantCulture)" type="number" name="depositdueamount" min="@Arch.Billofladings.BillofladingConsts.MindepositdueamountValue" max="@Arch.Billofladings.BillofladingConsts.MaxdepositdueamountValue" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_depositwaivedamount">@L("depositwaivedamount")</label>
+                <input class="form-control" id="Billoflading_depositwaivedamount" value="@Model.Billoflading.depositwaivedamount" type="text" name="depositwaivedamount" maxlength="@Arch.Billofladings.BillofladingConsts.MaxdepositwaivedamountLength" minlength="@Arch.Billofladings.BillofladingConsts.MindepositwaivedamountLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_depositwaivedreason">@L("depositwaivedreason")</label>
+                <input class="form-control" id="Billoflading_depositwaivedreason" value="@Model.Billoflading.depositwaivedreason" type="text" name="depositwaivedreason" maxlength="@Arch.Billofladings.BillofladingConsts.MaxdepositwaivedreasonLength" minlength="@Arch.Billofladings.BillofladingConsts.MindepositwaivedreasonLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_depositwaivedby">@L("depositwaivedby")</label>
+                <input class="form-control" id="Billoflading_depositwaivedby" value="@Model.Billoflading.depositwaivedby" type="text" name="depositwaivedby" maxlength="@Arch.Billofladings.BillofladingConsts.MaxdepositwaivedbyLength" minlength="@Arch.Billofladings.BillofladingConsts.MindepositwaivedbyLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_depositpaymentstatus">@L("depositpaymentstatus")</label>
+                <input class="form-control" id="Billoflading_depositpaymentstatus" value="@Model.Billoflading.depositpaymentstatus" type="text" name="depositpaymentstatus" maxlength="@Arch.Billofladings.BillofladingConsts.MaxdepositpaymentstatusLength" minlength="@Arch.Billofladings.BillofladingConsts.MindepositpaymentstatusLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_releaseoutstandingstatus">@L("releaseoutstandingstatus")</label>
+                <input class="form-control" id="Billoflading_releaseoutstandingstatus" value="@Model.Billoflading.releaseoutstandingstatus" type="text" name="releaseoutstandingstatus" maxlength="@Arch.Billofladings.BillofladingConsts.MaxreleaseoutstandingstatusLength" minlength="@Arch.Billofladings.BillofladingConsts.MinreleaseoutstandingstatusLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_releaseoutstandingreason">@L("releaseoutstandingreason")</label>
+                <input class="form-control" id="Billoflading_releaseoutstandingreason" value="@Model.Billoflading.releaseoutstandingreason" type="text" name="releaseoutstandingreason" maxlength="@Arch.Billofladings.BillofladingConsts.MaxreleaseoutstandingreasonLength" minlength="@Arch.Billofladings.BillofladingConsts.MinreleaseoutstandingreasonLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_releaseoutstandingby">@L("releaseoutstandingby")</label>
+                <input class="form-control" id="Billoflading_releaseoutstandingby" value="@Model.Billoflading.releaseoutstandingby" type="text" name="releaseoutstandingby" maxlength="@Arch.Billofladings.BillofladingConsts.MaxreleaseoutstandingbyLength" minlength="@Arch.Billofladings.BillofladingConsts.MinreleaseoutstandingbyLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_releaselongstandingstatus">@L("releaselongstandingstatus")</label>
+                <input class="form-control" id="Billoflading_releaselongstandingstatus" value="@Model.Billoflading.releaselongstandingstatus" type="text" name="releaselongstandingstatus" maxlength="@Arch.Billofladings.BillofladingConsts.MaxreleaselongstandingstatusLength" minlength="@Arch.Billofladings.BillofladingConsts.MinreleaselongstandingstatusLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_releaselongstandingreason">@L("releaselongstandingreason")</label>
+                <input class="form-control" id="Billoflading_releaselongstandingreason" value="@Model.Billoflading.releaselongstandingreason" type="text" name="releaselongstandingreason" maxlength="@Arch.Billofladings.BillofladingConsts.MaxreleaselongstandingreasonLength" minlength="@Arch.Billofladings.BillofladingConsts.MinreleaselongstandingreasonLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_releaselongstandingby">@L("releaselongstandingby")</label>
+                <input class="form-control" id="Billoflading_releaselongstandingby" value="@Model.Billoflading.releaselongstandingby" type="text" name="releaselongstandingby" maxlength="@Arch.Billofladings.BillofladingConsts.MaxreleaselongstandingbyLength" minlength="@Arch.Billofladings.BillofladingConsts.MinreleaselongstandingbyLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_blnotype">@L("blnotype")</label>
+                <input class="form-control" id="Billoflading_blnotype" value="@Model.Billoflading.blnotype" type="text" name="blnotype" maxlength="@Arch.Billofladings.BillofladingConsts.MaxblnotypeLength" minlength="@Arch.Billofladings.BillofladingConsts.MinblnotypeLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_blnosubmitstatus">@L("blnosubmitstatus")</label>
+                <input class="form-control" id="Billoflading_blnosubmitstatus" value="@Model.Billoflading.blnosubmitstatus" type="text" name="blnosubmitstatus" maxlength="@Arch.Billofladings.BillofladingConsts.MaxblnosubmitstatusLength" minlength="@Arch.Billofladings.BillofladingConsts.MinblnosubmitstatusLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_blnosubmittedto">@L("blnosubmittedto")</label>
+                <input class="form-control" id="Billoflading_blnosubmittedto" value="@Model.Billoflading.blnosubmittedto" type="text" name="blnosubmittedto" maxlength="@Arch.Billofladings.BillofladingConsts.MaxblnosubmittedtoLength" minlength="@Arch.Billofladings.BillofladingConsts.MinblnosubmittedtoLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_blnosubmittedby">@L("blnosubmittedby")</label>
+                <input class="form-control" id="Billoflading_blnosubmittedby" value="@Model.Billoflading.blnosubmittedby" type="text" name="blnosubmittedby" maxlength="@Arch.Billofladings.BillofladingConsts.MaxblnosubmittedbyLength" minlength="@Arch.Billofladings.BillofladingConsts.MinblnosubmittedbyLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Billoflading_blnosubmitref">@L("blnosubmitref")</label>
+                <input class="form-control" id="Billoflading_blnosubmitref" value="@Model.Billoflading.blnosubmitref" type="text" name="blnosubmitref" maxlength="@Arch.Billofladings.BillofladingConsts.MaxblnosubmitrefLength" minlength="@Arch.Billofladings.BillofladingConsts.MinblnosubmitrefLength" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

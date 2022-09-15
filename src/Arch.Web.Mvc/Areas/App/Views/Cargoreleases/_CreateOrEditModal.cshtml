@@ -1,0 +1,137 @@
+﻿
+@using System.Globalization
+@using Arch.Web.Areas.App.Models.Common.Modals
+@using Arch.Web.Areas.App.Models.Cargoreleases
+@model CreateOrEditCargoreleaseModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditCargorelease")) : L("CreateNewCargorelease")))
+
+<div class="modal-body">
+    <div id="CargoreleaseInformationsTab">
+        <form name="CargoreleaseInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.Cargorelease.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_priority">@L("priority")</label>
+                <input class="form-control" id="Cargorelease_priority" value="@Model.Cargorelease.priority" type="text" name="priority" maxlength="@Arch.Cargoreleases.CargoreleaseConsts.MaxpriorityLength" minlength="@Arch.Cargoreleases.CargoreleaseConsts.MinpriorityLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_blno">@L("blno")</label>
+                <input class="form-control" id="Cargorelease_blno" value="@Model.Cargorelease.blno" type="text" name="blno" maxlength="@Arch.Cargoreleases.CargoreleaseConsts.MaxblnoLength" minlength="@Arch.Cargoreleases.CargoreleaseConsts.MinblnoLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_invoicevalidity">@L("invoicevalidity")</label>
+                <input class="form-control m-input date-picker" id="Cargorelease_invoicevalidity" type="text" name="invoicevalidity" value="@Model.Cargorelease.invoicevalidity" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_terminal">@L("terminal")</label>
+                <input class="form-control" id="Cargorelease_terminal" value="@Model.Cargorelease.terminal" type="text" name="terminal" maxlength="@Arch.Cargoreleases.CargoreleaseConsts.MaxterminalLength" minlength="@Arch.Cargoreleases.CargoreleaseConsts.MinterminalLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_deliveryorderno">@L("deliveryorderno")</label>
+                <input class="form-control" id="Cargorelease_deliveryorderno" value="@Model.Cargorelease.deliveryorderno" type="text" name="deliveryorderno" maxlength="@Arch.Cargoreleases.CargoreleaseConsts.MaxdeliveryordernoLength" minlength="@Arch.Cargoreleases.CargoreleaseConsts.MindeliveryordernoLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_customercode">@L("customercode")</label>
+                <input class="form-control" id="Cargorelease_customercode" value="@Model.Cargorelease.customercode" type="text" name="customercode" maxlength="@Arch.Cargoreleases.CargoreleaseConsts.MaxcustomercodeLength" minlength="@Arch.Cargoreleases.CargoreleaseConsts.MincustomercodeLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_agencycode">@L("agencycode")</label>
+                <input class="form-control" id="Cargorelease_agencycode" value="@Model.Cargorelease.agencycode" type="text" name="agencycode" maxlength="@Arch.Cargoreleases.CargoreleaseConsts.MaxagencycodeLength" minlength="@Arch.Cargoreleases.CargoreleaseConsts.MinagencycodeLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_agentcode">@L("agentcode")</label>
+                <input class="form-control" id="Cargorelease_agentcode" value="@Model.Cargorelease.agentcode" type="text" name="agentcode" maxlength="@Arch.Cargoreleases.CargoreleaseConsts.MaxagentcodeLength" minlength="@Arch.Cargoreleases.CargoreleaseConsts.MinagentcodeLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_entrybyrepcode">@L("entrybyrepcode")</label>
+                <input class="form-control" id="Cargorelease_entrybyrepcode" value="@Model.Cargorelease.entrybyrepcode" type="text" name="entrybyrepcode" maxlength="@Arch.Cargoreleases.CargoreleaseConsts.MaxentrybyrepcodeLength" minlength="@Arch.Cargoreleases.CargoreleaseConsts.MinentrybyrepcodeLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_entrymode">@L("entrymode")</label>
+                <input class="form-control" id="Cargorelease_entrymode" value="@Model.Cargorelease.entrymode" type="text" name="entrymode" maxlength="@Arch.Cargoreleases.CargoreleaseConsts.MaxentrymodeLength" minlength="@Arch.Cargoreleases.CargoreleaseConsts.MinentrymodeLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_entrydate">@L("entrydate")</label>
+                <input class="form-control m-input date-picker" id="Cargorelease_entrydate" type="text" name="entrydate" value="@Model.Cargorelease.entrydate" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_approveby">@L("approveby")</label>
+                <input class="form-control" id="Cargorelease_approveby" value="@Model.Cargorelease.approveby" type="text" name="approveby" maxlength="@Arch.Cargoreleases.CargoreleaseConsts.MaxapprovebyLength" minlength="@Arch.Cargoreleases.CargoreleaseConsts.MinapprovebyLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_approvecomment">@L("approvecomment")</label>
+                <input class="form-control" id="Cargorelease_approvecomment" value="@Model.Cargorelease.approvecomment" type="text" name="approvecomment" maxlength="@Arch.Cargoreleases.CargoreleaseConsts.MaxapprovecommentLength" minlength="@Arch.Cargoreleases.CargoreleaseConsts.MinapprovecommentLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_approvedate">@L("approvedate")</label>
+                <input class="form-control m-input date-picker" id="Cargorelease_approvedate" type="text" name="approvedate" value="@Model.Cargorelease.approvedate" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_updatedby">@L("updatedby")</label>
+                <input class="form-control" id="Cargorelease_updatedby" value="@Model.Cargorelease.updatedby" type="text" name="updatedby" maxlength="@Arch.Cargoreleases.CargoreleaseConsts.MaxupdatedbyLength" minlength="@Arch.Cargoreleases.CargoreleaseConsts.MinupdatedbyLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_updatecomment">@L("updatecomment")</label>
+                <input class="form-control" id="Cargorelease_updatecomment" value="@Model.Cargorelease.updatecomment" type="text" name="updatecomment" maxlength="@Arch.Cargoreleases.CargoreleaseConsts.MaxupdatecommentLength" minlength="@Arch.Cargoreleases.CargoreleaseConsts.MinupdatecommentLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_updatedate">@L("updatedate")</label>
+                <input class="form-control m-input date-picker" id="Cargorelease_updatedate" type="text" name="updatedate" value="@Model.Cargorelease.updatedate" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_releaseby">@L("releaseby")</label>
+                <input class="form-control" id="Cargorelease_releaseby" value="@Model.Cargorelease.releaseby" type="text" name="releaseby" maxlength="@Arch.Cargoreleases.CargoreleaseConsts.MaxreleasebyLength" minlength="@Arch.Cargoreleases.CargoreleaseConsts.MinreleasebyLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_releasestatus">@L("releasestatus")</label>
+                <input class="form-control" id="Cargorelease_releasestatus" value="@Model.Cargorelease.releasestatus" type="text" name="releasestatus" maxlength="@Arch.Cargoreleases.CargoreleaseConsts.MaxreleasestatusLength" minlength="@Arch.Cargoreleases.CargoreleaseConsts.MinreleasestatusLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_releasecomment">@L("releasecomment")</label>
+                <input class="form-control" id="Cargorelease_releasecomment" value="@Model.Cargorelease.releasecomment" type="text" name="releasecomment" maxlength="@Arch.Cargoreleases.CargoreleaseConsts.MaxreleasecommentLength" minlength="@Arch.Cargoreleases.CargoreleaseConsts.MinreleasecommentLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_releasedate">@L("releasedate")</label>
+                <input class="form-control m-input date-picker" id="Cargorelease_releasedate" type="text" name="releasedate" value="@Model.Cargorelease.releasedate" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_status">@L("status")</label>
+                <input class="form-control" id="Cargorelease_status" value="@Model.Cargorelease.status" type="text" name="status" maxlength="@Arch.Cargoreleases.CargoreleaseConsts.MaxstatusLength" minlength="@Arch.Cargoreleases.CargoreleaseConsts.MinstatusLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Cargorelease_ipaddr">@L("ipaddr")</label>
+                <input class="form-control" id="Cargorelease_ipaddr" value="@Model.Cargorelease.ipaddr" type="text" name="ipaddr" maxlength="@Arch.Cargoreleases.CargoreleaseConsts.MaxipaddrLength" minlength="@Arch.Cargoreleases.CargoreleaseConsts.MinipaddrLength" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

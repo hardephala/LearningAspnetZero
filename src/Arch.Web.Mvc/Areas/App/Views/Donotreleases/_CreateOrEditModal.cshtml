@@ -1,0 +1,67 @@
+﻿
+@using System.Globalization
+@using Arch.Web.Areas.App.Models.Common.Modals
+@using Arch.Web.Areas.App.Models.Donotreleases
+@model CreateOrEditDonotreleaseModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditDonotrelease")) : L("CreateNewDonotrelease")))
+
+<div class="modal-body">
+    <div id="DonotreleaseInformationsTab">
+        <form name="DonotreleaseInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.Donotrelease.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="Donotrelease_blno">@L("blno")</label>
+                <input class="form-control" id="Donotrelease_blno" value="@Model.Donotrelease.blno" type="text" name="blno" maxlength="@Arch.Donotreleases.DonotreleaseConsts.MaxblnoLength" minlength="@Arch.Donotreleases.DonotreleaseConsts.MinblnoLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Donotrelease_status">@L("status")</label>
+                <input class="form-control" id="Donotrelease_status" value="@Model.Donotrelease.status" type="text" name="status" maxlength="@Arch.Donotreleases.DonotreleaseConsts.MaxstatusLength" minlength="@Arch.Donotreleases.DonotreleaseConsts.MinstatusLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Donotrelease_releasedby">@L("releasedby")</label>
+                <input class="form-control" id="Donotrelease_releasedby" value="@Model.Donotrelease.releasedby" type="text" name="releasedby" maxlength="@Arch.Donotreleases.DonotreleaseConsts.MaxreleasedbyLength" minlength="@Arch.Donotreleases.DonotreleaseConsts.MinreleasedbyLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Donotrelease_releasecomment">@L("releasecomment")</label>
+                <input class="form-control" id="Donotrelease_releasecomment" value="@Model.Donotrelease.releasecomment" type="text" name="releasecomment" maxlength="@Arch.Donotreleases.DonotreleaseConsts.MaxreleasecommentLength" minlength="@Arch.Donotreleases.DonotreleaseConsts.MinreleasecommentLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Donotrelease_blockedby">@L("blockedby")</label>
+                <input class="form-control" id="Donotrelease_blockedby" value="@Model.Donotrelease.blockedby" type="text" name="blockedby" maxlength="@Arch.Donotreleases.DonotreleaseConsts.MaxblockedbyLength" minlength="@Arch.Donotreleases.DonotreleaseConsts.MinblockedbyLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Donotrelease_blockedcomment">@L("blockedcomment")</label>
+                <input class="form-control" id="Donotrelease_blockedcomment" value="@Model.Donotrelease.blockedcomment" type="text" name="blockedcomment" maxlength="@Arch.Donotreleases.DonotreleaseConsts.MaxblockedcommentLength" minlength="@Arch.Donotreleases.DonotreleaseConsts.MinblockedcommentLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Donotrelease_blockeddate">@L("blockeddate")</label>
+                <input class="form-control m-input date-picker" id="Donotrelease_blockeddate" type="text" name="blockeddate" value="@Model.Donotrelease.blockeddate" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Donotrelease_blockedreference">@L("blockedreference")</label>
+                <input class="form-control" id="Donotrelease_blockedreference" value="@Model.Donotrelease.blockedreference" type="text" name="blockedreference" maxlength="@Arch.Donotreleases.DonotreleaseConsts.MaxblockedreferenceLength" minlength="@Arch.Donotreleases.DonotreleaseConsts.MinblockedreferenceLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Donotrelease_blcomment">@L("blcomment")</label>
+                <input class="form-control" id="Donotrelease_blcomment" value="@Model.Donotrelease.blcomment" type="text" name="blcomment" maxlength="@Arch.Donotreleases.DonotreleaseConsts.MaxblcommentLength" minlength="@Arch.Donotreleases.DonotreleaseConsts.MinblcommentLength" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

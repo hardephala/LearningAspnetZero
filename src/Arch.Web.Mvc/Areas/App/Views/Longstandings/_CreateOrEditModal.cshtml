@@ -1,0 +1,92 @@
+﻿
+@using System.Globalization
+@using Arch.Web.Areas.App.Models.Common.Modals
+@using Arch.Web.Areas.App.Models.Longstandings
+@model CreateOrEditLongstandingModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditLongstanding")) : L("CreateNewLongstanding")))
+
+<div class="modal-body">
+    <div id="LongstandingInformationsTab">
+        <form name="LongstandingInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.Longstanding.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="Longstanding_customercode">@L("customercode")</label>
+                <input class="form-control" id="Longstanding_customercode" value="@Model.Longstanding.customercode" type="text" name="customercode" maxlength="@Arch.Longstandings.LongstandingConsts.MaxcustomercodeLength" minlength="@Arch.Longstandings.LongstandingConsts.MincustomercodeLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Longstanding_blno">@L("blno")</label>
+                <input class="form-control" id="Longstanding_blno" value="@Model.Longstanding.blno" type="text" name="blno" maxlength="@Arch.Longstandings.LongstandingConsts.MaxblnoLength" minlength="@Arch.Longstandings.LongstandingConsts.MinblnoLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Longstanding_containerno">@L("containerno")</label>
+                <input class="form-control" id="Longstanding_containerno" value="@Model.Longstanding.containerno" type="text" name="containerno" maxlength="@Arch.Longstandings.LongstandingConsts.MaxcontainernoLength" minlength="@Arch.Longstandings.LongstandingConsts.MincontainernoLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Longstanding_containertype">@L("containertype")</label>
+                <input class="form-control" id="Longstanding_containertype" value="@Model.Longstanding.containertype" type="text" name="containertype" maxlength="@Arch.Longstandings.LongstandingConsts.MaxcontainertypeLength" minlength="@Arch.Longstandings.LongstandingConsts.MincontainertypeLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Longstanding_freetext">@L("freetext")</label>
+                <input class="form-control" id="Longstanding_freetext" value="@Model.Longstanding.freetext" type="text" name="freetext" maxlength="@Arch.Longstandings.LongstandingConsts.MaxfreetextLength" minlength="@Arch.Longstandings.LongstandingConsts.MinfreetextLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Longstanding_location">@L("location")</label>
+                <input class="form-control" id="Longstanding_location" value="@Model.Longstanding.location" type="text" name="location" maxlength="@Arch.Longstandings.LongstandingConsts.MaxlocationLength" minlength="@Arch.Longstandings.LongstandingConsts.MinlocationLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Longstanding_lastmove">@L("lastmove")</label>
+                <input class="form-control" id="Longstanding_lastmove" value="@Model.Longstanding.lastmove" type="text" name="lastmove" maxlength="@Arch.Longstandings.LongstandingConsts.MaxlastmoveLength" minlength="@Arch.Longstandings.LongstandingConsts.MinlastmoveLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Longstanding_days">@L("days")</label>
+                <input class="form-control m-input" id="Longstanding_days" value="@Model.Longstanding.days.ToString(CultureInfo.InvariantCulture)" type="number" name="days" min="@Arch.Longstandings.LongstandingConsts.MindaysValue" max="@Arch.Longstandings.LongstandingConsts.MaxdaysValue" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Longstanding_status">@L("status")</label>
+                <input class="form-control" id="Longstanding_status" value="@Model.Longstanding.status" type="text" name="status" maxlength="@Arch.Longstandings.LongstandingConsts.MaxstatusLength" minlength="@Arch.Longstandings.LongstandingConsts.MinstatusLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Longstanding_releasedby">@L("releasedby")</label>
+                <input class="form-control" id="Longstanding_releasedby" value="@Model.Longstanding.releasedby" type="text" name="releasedby" maxlength="@Arch.Longstandings.LongstandingConsts.MaxreleasedbyLength" minlength="@Arch.Longstandings.LongstandingConsts.MinreleasedbyLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Longstanding_releasedreason">@L("releasedreason")</label>
+                <input class="form-control" id="Longstanding_releasedreason" value="@Model.Longstanding.releasedreason" type="text" name="releasedreason" maxlength="@Arch.Longstandings.LongstandingConsts.MaxreleasedreasonLength" minlength="@Arch.Longstandings.LongstandingConsts.MinreleasedreasonLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Longstanding_releasecomment">@L("releasecomment")</label>
+                <input class="form-control" id="Longstanding_releasecomment" value="@Model.Longstanding.releasecomment" type="text" name="releasecomment" maxlength="@Arch.Longstandings.LongstandingConsts.MaxreleasecommentLength" minlength="@Arch.Longstandings.LongstandingConsts.MinreleasecommentLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Longstanding_validitydate">@L("validitydate")</label>
+                <input class="form-control m-input date-picker" id="Longstanding_validitydate" type="text" name="validitydate" value="@Model.Longstanding.validitydate" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Longstanding_shipoperator">@L("shipoperator")</label>
+                <input class="form-control" id="Longstanding_shipoperator" value="@Model.Longstanding.shipoperator" type="text" name="shipoperator" maxlength="@Arch.Longstandings.LongstandingConsts.MaxshipoperatorLength" minlength="@Arch.Longstandings.LongstandingConsts.MinshipoperatorLength" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

@@ -1,0 +1,74 @@
+﻿
+@using Arch.Web.Areas.App.Models.Common.Modals
+@using Arch.Web.Areas.App.Models.Longstandings
+@model LongstandingViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="LongstandingInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("customercode") :</h6>
+                @Model.Longstanding.customercode
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("blno") :</h6>
+                @Model.Longstanding.blno
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("containerno") :</h6>
+                @Model.Longstanding.containerno
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("containertype") :</h6>
+                @Model.Longstanding.containertype
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("freetext") :</h6>
+                @Model.Longstanding.freetext
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("location") :</h6>
+                @Model.Longstanding.location
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("lastmove") :</h6>
+                @Model.Longstanding.lastmove
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("days") :</h6>
+                @Model.Longstanding.days
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("status") :</h6>
+                @Model.Longstanding.status
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("releasedby") :</h6>
+                @Model.Longstanding.releasedby
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("releasedreason") :</h6>
+                @Model.Longstanding.releasedreason
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("releasecomment") :</h6>
+                @Model.Longstanding.releasecomment
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("validitydate") :</h6>
+                @Model.Longstanding.validitydate
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("shipoperator") :</h6>
+                @Model.Longstanding.shipoperator
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

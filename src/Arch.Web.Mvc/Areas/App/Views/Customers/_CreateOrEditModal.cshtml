@@ -1,0 +1,92 @@
+﻿
+@using System.Globalization
+@using Arch.Web.Areas.App.Models.Common.Modals
+@using Arch.Web.Areas.App.Models.Customers
+@model CreateOrEditCustomerModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditCustomer")) : L("CreateNewCustomer")))
+
+<div class="modal-body">
+        <div id="CustomerInformationsTab">
+            <form name="CustomerInformationsForm" role="form" novalidate class="form-validation">
+
+                @if (Model.IsEditMode)
+                {
+                    <input type="hidden" name="id" value="@Model.Customer.Id" />
+                }
+
+				
+                
+				
+                
+								<div class="my-3">
+									<label class="form-label" for="Customer_customerrole">@L("customerrole")</label>
+									<input class="form-control" id="Customer_customerrole" value="@Model.Customer.customerrole" type="text" name="customerrole"   maxlength="@Arch.Customers.CustomerConsts.MaxcustomerroleLength"  minlength="@Arch.Customers.CustomerConsts.MincustomerroleLength"  />
+								</div>
+					
+								<div class="my-3">
+									<label class="form-label" for="Customer_customercode">@L("customercode")</label>
+									<input class="form-control" id="Customer_customercode" value="@Model.Customer.customercode" type="text" name="customercode"   maxlength="@Arch.Customers.CustomerConsts.MaxcustomercodeLength"  minlength="@Arch.Customers.CustomerConsts.MincustomercodeLength"  />
+								</div>
+					
+								<div class="my-3">
+									<label class="form-label" for="Customer_customername">@L("customername")</label>
+									<input class="form-control" id="Customer_customername" value="@Model.Customer.customername" type="text" name="customername"   maxlength="@Arch.Customers.CustomerConsts.MaxcustomernameLength"  minlength="@Arch.Customers.CustomerConsts.MincustomernameLength"  />
+								</div>
+					
+								<div class="my-3">
+									<label class="form-label" for="Customer_customergroupcode">@L("customergroupcode")</label>
+									<input class="form-control" id="Customer_customergroupcode" value="@Model.Customer.customergroupcode" type="text" name="customergroupcode"   maxlength="@Arch.Customers.CustomerConsts.MaxcustomergroupcodeLength"  minlength="@Arch.Customers.CustomerConsts.MincustomergroupcodeLength"  />
+								</div>
+					
+								<div class="my-3">
+									<label class="form-label" for="Customer_customergroupname">@L("customergroupname")</label>
+									<input class="form-control" id="Customer_customergroupname" value="@Model.Customer.customergroupname" type="text" name="customergroupname"   maxlength="@Arch.Customers.CustomerConsts.MaxcustomergroupnameLength"  minlength="@Arch.Customers.CustomerConsts.MincustomergroupnameLength"  />
+								</div>
+					
+								<div class="my-3">
+									<label class="form-label" for="Customer_primaryemail">@L("primaryemail")</label>
+									<input class="form-control" id="Customer_primaryemail" value="@Model.Customer.primaryemail" type="text" name="primaryemail"   maxlength="@Arch.Customers.CustomerConsts.MaxprimaryemailLength"  minlength="@Arch.Customers.CustomerConsts.MinprimaryemailLength"  />
+								</div>
+					
+								<div class="my-3">
+									<label class="form-label" for="Customer_altemail">@L("altemail")</label>
+									<input class="form-control" id="Customer_altemail" value="@Model.Customer.altemail" type="text" name="altemail"   maxlength="@Arch.Customers.CustomerConsts.MaxaltemailLength"  minlength="@Arch.Customers.CustomerConsts.MinaltemailLength"  />
+								</div>
+					
+								<div class="my-3">
+									<label class="form-label" for="Customer_phonenumber">@L("phonenumber")</label>
+									<input class="form-control" id="Customer_phonenumber" value="@Model.Customer.phonenumber" type="text" name="phonenumber"   maxlength="@Arch.Customers.CustomerConsts.MaxphonenumberLength"  minlength="@Arch.Customers.CustomerConsts.MinphonenumberLength"  />
+								</div>
+					
+								<div class="my-3">
+									<label class="form-label" for="Customer_accounttype">@L("accounttype")</label>
+									<input class="form-control" id="Customer_accounttype" value="@Model.Customer.accounttype" type="text" name="accounttype"   maxlength="@Arch.Customers.CustomerConsts.MaxaccounttypeLength"  minlength="@Arch.Customers.CustomerConsts.MinaccounttypeLength"  />
+								</div>
+					
+								<div class="my-3">
+									<label class="form-label" for="Customer_linkedcode">@L("linkedcode")</label>
+									<input class="form-control" id="Customer_linkedcode" value="@Model.Customer.linkedcode" type="text" name="linkedcode"   maxlength="@Arch.Customers.CustomerConsts.MaxlinkedcodeLength"  minlength="@Arch.Customers.CustomerConsts.MinlinkedcodeLength"  />
+								</div>
+					
+								<div class="my-3">
+									<label class="form-label" for="Customer_password">@L("password")</label>
+									<input class="form-control" id="Customer_password" value="@Model.Customer.password" type="text" name="password"   maxlength="@Arch.Customers.CustomerConsts.MaxpasswordLength"  minlength="@Arch.Customers.CustomerConsts.MinpasswordLength"  />
+								</div>
+					
+								<div class="my-3">
+									<label class="form-label" for="Customer_status">@L("status")</label>
+									<input class="form-control" id="Customer_status" value="@Model.Customer.status" type="text" name="status"   maxlength="@Arch.Customers.CustomerConsts.MaxstatusLength"  minlength="@Arch.Customers.CustomerConsts.MinstatusLength"  />
+								</div>
+					
+								<div class="my-3">
+									<label class="form-label" for="Customer_notes">@L("notes")</label>
+									<input class="form-control" id="Customer_notes" value="@Model.Customer.notes" type="text" name="notes"   maxlength="@Arch.Customers.CustomerConsts.MaxnotesLength"  minlength="@Arch.Customers.CustomerConsts.MinnotesLength"  />
+								</div>
+					
+
+            </form>
+        </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

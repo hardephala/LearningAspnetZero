@@ -1,0 +1,110 @@
+﻿
+@using Arch.Web.Areas.App.Models.Common.Modals
+@using Arch.Web.Areas.App.Models.Cargoreleases
+@model CargoreleaseViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="CargoreleaseInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("priority") :</h6>
+                @Model.Cargorelease.priority
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("blno") :</h6>
+                @Model.Cargorelease.blno
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("invoicevalidity") :</h6>
+                @Model.Cargorelease.invoicevalidity
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("terminal") :</h6>
+                @Model.Cargorelease.terminal
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("deliveryorderno") :</h6>
+                @Model.Cargorelease.deliveryorderno
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("customercode") :</h6>
+                @Model.Cargorelease.customercode
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("agencycode") :</h6>
+                @Model.Cargorelease.agencycode
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("agentcode") :</h6>
+                @Model.Cargorelease.agentcode
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("entrybyrepcode") :</h6>
+                @Model.Cargorelease.entrybyrepcode
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("entrymode") :</h6>
+                @Model.Cargorelease.entrymode
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("entrydate") :</h6>
+                @Model.Cargorelease.entrydate
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("approveby") :</h6>
+                @Model.Cargorelease.approveby
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("approvecomment") :</h6>
+                @Model.Cargorelease.approvecomment
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("approvedate") :</h6>
+                @Model.Cargorelease.approvedate
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("updatedby") :</h6>
+                @Model.Cargorelease.updatedby
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("updatecomment") :</h6>
+                @Model.Cargorelease.updatecomment
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("updatedate") :</h6>
+                @Model.Cargorelease.updatedate
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("releaseby") :</h6>
+                @Model.Cargorelease.releaseby
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("releasestatus") :</h6>
+                @Model.Cargorelease.releasestatus
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("releasecomment") :</h6>
+                @Model.Cargorelease.releasecomment
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("releasedate") :</h6>
+                @Model.Cargorelease.releasedate
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("status") :</h6>
+                @Model.Cargorelease.status
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("ipaddr") :</h6>
+                @Model.Cargorelease.ipaddr
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

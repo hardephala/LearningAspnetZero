@@ -1,0 +1,54 @@
+﻿
+@using Arch.Web.Areas.App.Models.Common.Modals
+@using Arch.Web.Areas.App.Models.Donotreleases
+@model DonotreleaseViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="DonotreleaseInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("blno") :</h6>
+                @Model.Donotrelease.blno
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("status") :</h6>
+                @Model.Donotrelease.status
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("releasedby") :</h6>
+                @Model.Donotrelease.releasedby
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("releasecomment") :</h6>
+                @Model.Donotrelease.releasecomment
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("blockedby") :</h6>
+                @Model.Donotrelease.blockedby
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("blockedcomment") :</h6>
+                @Model.Donotrelease.blockedcomment
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("blockeddate") :</h6>
+                @Model.Donotrelease.blockeddate
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("blockedreference") :</h6>
+                @Model.Donotrelease.blockedreference
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("blcomment") :</h6>
+                @Model.Donotrelease.blcomment
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

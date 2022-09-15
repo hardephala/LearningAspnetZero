@@ -1,0 +1,166 @@
+﻿
+@using Arch.Web.Areas.App.Models.Common.Modals
+@using Arch.Web.Areas.App.Models.Billofladings
+@model BillofladingViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="BillofladingInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("shipmentno") :</h6>
+                @Model.Billoflading.shipmentno
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("blno") :</h6>
+                @Model.Billoflading.blno
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("equipmentno") :</h6>
+                @Model.Billoflading.equipmentno
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("equipmenttype") :</h6>
+                @Model.Billoflading.equipmenttype
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("equipmentsize") :</h6>
+                @Model.Billoflading.equipmentsize
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("shipperowned") :</h6>
+                @Model.Billoflading.shipperowned
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("shipoperator") :</h6>
+                @Model.Billoflading.shipoperator
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("servicecontract") :</h6>
+                @Model.Billoflading.servicecontract
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("spotbooking") :</h6>
+                @Model.Billoflading.spotbooking
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("consigneecode") :</h6>
+                @Model.Billoflading.consigneecode
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("dischargeportcode") :</h6>
+                @Model.Billoflading.dischargeportcode
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("dischargeportname") :</h6>
+                @Model.Billoflading.dischargeportname
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("placeofdeliverycode") :</h6>
+                @Model.Billoflading.placeofdeliverycode
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("placeofdeliveryname") :</h6>
+                @Model.Billoflading.placeofdeliveryname
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("finalvesselcode") :</h6>
+                @Model.Billoflading.finalvesselcode
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("finalvesselname") :</h6>
+                @Model.Billoflading.finalvesselname
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("finalvesselvoyage") :</h6>
+                @Model.Billoflading.finalvesselvoyage
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("finalvesseleta") :</h6>
+                @Model.Billoflading.finalvesseleta
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("partpartstatus") :</h6>
+                @Model.Billoflading.partpartstatus
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("partpartref") :</h6>
+                @Model.Billoflading.partpartref
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("depositpayable") :</h6>
+                @Model.Billoflading.depositpayable
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("depositdueamount") :</h6>
+                @Model.Billoflading.depositdueamount
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("depositwaivedamount") :</h6>
+                @Model.Billoflading.depositwaivedamount
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("depositwaivedreason") :</h6>
+                @Model.Billoflading.depositwaivedreason
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("depositwaivedby") :</h6>
+                @Model.Billoflading.depositwaivedby
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("depositpaymentstatus") :</h6>
+                @Model.Billoflading.depositpaymentstatus
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("releaseoutstandingstatus") :</h6>
+                @Model.Billoflading.releaseoutstandingstatus
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("releaseoutstandingreason") :</h6>
+                @Model.Billoflading.releaseoutstandingreason
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("releaseoutstandingby") :</h6>
+                @Model.Billoflading.releaseoutstandingby
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("releaselongstandingstatus") :</h6>
+                @Model.Billoflading.releaselongstandingstatus
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("releaselongstandingreason") :</h6>
+                @Model.Billoflading.releaselongstandingreason
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("releaselongstandingby") :</h6>
+                @Model.Billoflading.releaselongstandingby
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("blnotype") :</h6>
+                @Model.Billoflading.blnotype
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("blnosubmitstatus") :</h6>
+                @Model.Billoflading.blnosubmitstatus
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("blnosubmittedto") :</h6>
+                @Model.Billoflading.blnosubmittedto
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("blnosubmittedby") :</h6>
+                @Model.Billoflading.blnosubmittedby
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("blnosubmitref") :</h6>
+                @Model.Billoflading.blnosubmitref
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

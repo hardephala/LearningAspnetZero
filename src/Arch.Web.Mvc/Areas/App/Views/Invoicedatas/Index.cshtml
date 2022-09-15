@@ -1,0 +1,193 @@
+﻿@using Arch.Authorization
+@using Arch.Web.Areas.App.Models.Invoicedatas
+@using Arch.Web.Areas.App.Startup
+@model InvoicedatasViewModel
+@{
+ViewBag.CurrentPageName = AppPageNames.Common.Invoicedatas;
+}
+@section Scripts
+{
+<script abp-src="/view-resources/Areas/App/Views/Invoicedatas/Index.js" asp-append-version="true"></script>
+}
+
+<div class="content d-flex flex-column flex-column-fluid">
+
+    <abp-page-subheader title='@L("Invoicedatas")' description='@L("InvoicedatasHeaderInfo")'>
+        <button id="ExportToExcelButton" class="btn btn-outline btn-outline-success btn-active-light-success me-1"><i class="fa fa-file-excel"></i> @L("ExportToExcel")</button>
+
+        @if (IsGranted(AppPermissions.Pages_Invoicedatas_Create))
+        {
+        <button id="CreateNewInvoicedataButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewInvoicedata")</button>
+        }
+    </abp-page-subheader>
+
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">
+            <div class="card-body">
+                <div class="form">
+                    <div class="row align-items-center mb-4">
+                        <div class="col-xl-12">
+
+                            <div class="my-3">
+                                <div class="input-group">
+                                    <input type="text" id="InvoicedatasTableFilter" class="form-control" placeholder='@L("SearchWithThreeDot")' value="@Model.FilterText">
+                                    <button id="GetInvoicedatasButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4">
+                    <div class="col-md-12">
+
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="blnoFilterId">@L("blno")</label>
+                            <input type="text" class="form-control" name="blnoFilter" id="blnoFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="MinvaliditydateFilterId">@L("validitydateRange")</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker startDate" type="text" placeholder="@L(" MinValue")" id="MinvaliditydateFilterId">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker endDate" type="text" placeholder="@L(" MaxValue")" id="MaxvaliditydateFilterId">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="amountFilterId">@L("amount")</label>
+                            <input type="text" class="form-control" name="amountFilter" id="amountFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="amountdueFilterId">@L("amountdue")</label>
+                            <input type="text" class="form-control" name="amountdueFilter" id="amountdueFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="statusFilterId">@L("status")</label>
+                            <input type="text" class="form-control" name="statusFilter" id="statusFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="MininvpaiddateFilterId">@L("invpaiddateRange")</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker startDate" type="text" placeholder="@L(" MinValue")" id="MininvpaiddateFilterId">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker endDate" type="text" placeholder="@L(" MaxValue")" id="MaxinvpaiddateFilterId">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="useridFilterId">@L("userid")</label>
+                            <input type="text" class="form-control" name="useridFilter" id="useridFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="waiverFilterId">@L("waiver")</label>
+                            <input type="text" class="form-control" name="waiverFilter" id="waiverFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="waivedamountFilterId">@L("waivedamount")</label>
+                            <input type="text" class="form-control" name="waivedamountFilter" id="waivedamountFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="waivedbyFilterId">@L("waivedby")</label>
+                            <input type="text" class="form-control" name="waivedbyFilter" id="waivedbyFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="waivecommentFilterId">@L("waivecomment")</label>
+                            <input type="text" class="form-control" name="waivecommentFilter" id="waivecommentFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="MindatewaivedFilterId">@L("datewaivedRange")</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker startDate" type="text" placeholder="@L(" MinValue")" id="MindatewaivedFilterId">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker endDate" type="text" placeholder="@L(" MaxValue")" id="MaxdatewaivedFilterId">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="MinCreationTimeFilterId">@L("CreationTimeRange")</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker startDate" type="text" placeholder="@L(" MinValue")" id="MinCreationTimeFilterId">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker endDate" type="text" placeholder="@L(" MaxValue")" id="MaxCreationTimeFilterId">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="MinLastModificationTimeFilterId">@L("LastModificationTimeRange")</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker startDate" type="text" placeholder="@L(" MinValue")" id="MinLastModificationTimeFilterId">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker endDate" type="text" placeholder="@L(" MaxValue")" id="MaxLastModificationTimeFilterId">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="my-3">
+                            <label class="form-label" for="BillofladingblnoFilterId">(@L("Billoflading")) @L("blno")</label>
+                            <input type="text" class="form-control" name="billofladingblnoFilter" id="BillofladingblnoFilterId">
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-4">
+                    <div class="col-xl-12">
+                        <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
+                        <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <table id="InvoicedatasTable" class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                        <thead>
+                            <tr>
+                                <th></th>
+
+                                <th>@L("Actions")</th>
+                                <th>@L("blno")</th>
+                                <th>@L("validitydate")</th>
+                                <th>@L("amount")</th>
+                                <th>@L("amountdue")</th>
+                                <th>@L("status")</th>
+                                <th>@L("invpaiddate")</th>
+                                <th>@L("userid")</th>
+                                <th>@L("waiver")</th>
+                                <th>@L("waivedamount")</th>
+                                <th>@L("waivedby")</th>
+                                <th>@L("waivecomment")</th>
+                                <th>@L("datewaived")</th>
+                                <th>@L("CreationTime")</th>
+                                <th>@L("LastModificationTime")</th>
+                                <th>@L("Billofladingblno")</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

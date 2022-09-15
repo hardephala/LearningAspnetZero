@@ -1,0 +1,97 @@
+﻿
+@using System.Globalization
+@using Arch.Web.Areas.App.Models.Common.Modals
+@using Arch.Web.Areas.App.Models.Invoicedatas
+@model CreateOrEditInvoicedataModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditInvoicedata")) : L("CreateNewInvoicedata")))
+
+<div class="modal-body">
+    <div id="InvoicedataInformationsTab">
+        <form name="InvoicedataInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.Invoicedata.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="billofladingId">@L("Billoflading")</label>
+                @Html.DropDownList("billofladingId", new SelectList(Model.InvoicedataBillofladingList,"Id","DisplayName", (Model.IsEditMode ? Model.Invoicedata.BillofladingId.ToString() : "")),@L("SelectABilloflading"), new { @class = "form-control" })
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Invoicedata_blno">@L("blno")</label>
+                <input class="form-control" id="Invoicedata_blno" value="@Model.Invoicedata.blno" type="text" name="blno" maxlength="@Arch.Invoicedatas.InvoicedataConsts.MaxblnoLength" minlength="@Arch.Invoicedatas.InvoicedataConsts.MinblnoLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Invoicedata_validitydate">@L("validitydate")</label>
+                <input class="form-control m-input date-picker" id="Invoicedata_validitydate" type="text" name="validitydate" value="@Model.Invoicedata.validitydate" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Invoicedata_amount">@L("amount")</label>
+                <input class="form-control" id="Invoicedata_amount" value="@Model.Invoicedata.amount" type="text" name="amount" maxlength="@Arch.Invoicedatas.InvoicedataConsts.MaxamountLength" minlength="@Arch.Invoicedatas.InvoicedataConsts.MinamountLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Invoicedata_amountdue">@L("amountdue")</label>
+                <input class="form-control" id="Invoicedata_amountdue" value="@Model.Invoicedata.amountdue" type="text" name="amountdue" maxlength="@Arch.Invoicedatas.InvoicedataConsts.MaxamountdueLength" minlength="@Arch.Invoicedatas.InvoicedataConsts.MinamountdueLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Invoicedata_status">@L("status")</label>
+                <input class="form-control" id="Invoicedata_status" value="@Model.Invoicedata.status" type="text" name="status" maxlength="@Arch.Invoicedatas.InvoicedataConsts.MaxstatusLength" minlength="@Arch.Invoicedatas.InvoicedataConsts.MinstatusLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Invoicedata_invpaiddate">@L("invpaiddate")</label>
+                <input class="form-control m-input date-picker" id="Invoicedata_invpaiddate" type="text" name="invpaiddate" value="@Model.Invoicedata.invpaiddate" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Invoicedata_userid">@L("userid")</label>
+                <input class="form-control" id="Invoicedata_userid" value="@Model.Invoicedata.userid" type="text" name="userid" maxlength="@Arch.Invoicedatas.InvoicedataConsts.MaxuseridLength" minlength="@Arch.Invoicedatas.InvoicedataConsts.MinuseridLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Invoicedata_waiver">@L("waiver")</label>
+                <input class="form-control" id="Invoicedata_waiver" value="@Model.Invoicedata.waiver" type="text" name="waiver" maxlength="@Arch.Invoicedatas.InvoicedataConsts.MaxwaiverLength" minlength="@Arch.Invoicedatas.InvoicedataConsts.MinwaiverLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Invoicedata_waivedamount">@L("waivedamount")</label>
+                <input class="form-control" id="Invoicedata_waivedamount" value="@Model.Invoicedata.waivedamount" type="text" name="waivedamount" maxlength="@Arch.Invoicedatas.InvoicedataConsts.MaxwaivedamountLength" minlength="@Arch.Invoicedatas.InvoicedataConsts.MinwaivedamountLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Invoicedata_waivedby">@L("waivedby")</label>
+                <input class="form-control" id="Invoicedata_waivedby" value="@Model.Invoicedata.waivedby" type="text" name="waivedby" maxlength="@Arch.Invoicedatas.InvoicedataConsts.MaxwaivedbyLength" minlength="@Arch.Invoicedatas.InvoicedataConsts.MinwaivedbyLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Invoicedata_waivecomment">@L("waivecomment")</label>
+                <input class="form-control" id="Invoicedata_waivecomment" value="@Model.Invoicedata.waivecomment" type="text" name="waivecomment" maxlength="@Arch.Invoicedatas.InvoicedataConsts.MaxwaivecommentLength" minlength="@Arch.Invoicedatas.InvoicedataConsts.MinwaivecommentLength" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Invoicedata_datewaived">@L("datewaived")</label>
+                <input class="form-control m-input date-picker" id="Invoicedata_datewaived" type="text" name="datewaived" value="@Model.Invoicedata.datewaived" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Invoicedata_CreationTime">@L("CreationTime")</label>
+                <input class="form-control m-input date-picker" id="Invoicedata_CreationTime" type="text" name="creationTime" value="@Model.Invoicedata.CreationTime" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="Invoicedata_LastModificationTime">@L("LastModificationTime")</label>
+                <input class="form-control m-input date-picker" id="Invoicedata_LastModificationTime" type="text" name="lastModificationTime" value="@Model.Invoicedata.LastModificationTime" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

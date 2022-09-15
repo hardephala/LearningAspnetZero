@@ -1,0 +1,71 @@
+﻿
+@using System.Globalization
+@using Arch.Web.Areas.App.Models.Common.Modals
+@using Arch.Web.Areas.App.Models.ErInvoiceDatas
+@model CreateOrEditErInvoiceDataModalViewModel
+@using Abp.Extensions
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditErInvoiceData")) : L("CreateNewErInvoiceData")))
+
+<div class="modal-body">
+    <div id="ErInvoiceDataInformationsTab">
+        <form name="ErInvoiceDataInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+            <input type="hidden" name="id" value="@Model.ErInvoiceData.Id" />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="Billofladingblno">@L("Billoflading")</label>
+                <div class="input-group">
+                    <input class="form-control" id="Billofladingblno" name="billofladingblno" value="@Model.Billofladingblno" type="text" disabled>
+                    <button class="btn btn-primary blue" id="OpenBillofladingLookupTableButton" type="button"><i class="fa fa-search"></i> @L("Pick")</button>
+                    <button class="btn btn-danger btn-icon" type="button" id="ClearBillofladingblnoButton"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+            <input class="form-control" id="ErInvoiceData_BillofladingId" value="@Model.ErInvoiceData.BillofladingId" type="text" name="billofladingId" hidden />
+            }
+            else
+            {
+            <input class="form-control" id="ErInvoiceData_BillofladingId" value="" type="text" name="billofladingId" hidden />
+            }
+
+            <div class="my-3">
+                <label class="form-label" for="ErInvoiceData_validityDate">@L("validityDate")</label>
+                <input class="form-control m-input date-picker" id="ErInvoiceData_validityDate" type="text" name="validityDate" value="@Model.ErInvoiceData.validityDate" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="ErInvoiceData_amount">@L("amount")</label>
+                <input class="form-control" id="ErInvoiceData_amount" value="@Model.ErInvoiceData.amount" type="text" name="amount" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="ErInvoiceData_amountdue">@L("amountdue")</label>
+                <input class="form-control" id="ErInvoiceData_amountdue" value="@Model.ErInvoiceData.amountdue" type="text" name="amountdue" />
+            </div>
+
+            <div class="my-3">
+                <label class="form-label" for="ErInvoiceData_status">@L("status")</label>
+                @*<input class="form-control" id="ErInvoiceData_status" value="@Model.ErInvoiceData.status" type="text" name="status" />*@
+                <select class="form-control" id="ErInvoiceData_status" name="status">
+                    <option>@Model.ErInvoiceData.status</option>
+                    <option>Not Paid</option>
+                    <option>Paid</option>
+                    <option>Waived</option>
+                </select>
+            </div>
+
+            <div class="my-3">
+                <label>Excel Upload</label>
+                
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")
